@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: configuration-service
+  cloud:
+    config:
+      server:
+   #     native:
+    #      search-locations: classpath:/configs
+        git:
+          uri: https://github.com/maurogmiranda/configTrabajoFinal
+          default-label: main
+
+server:
+  port: 8888
