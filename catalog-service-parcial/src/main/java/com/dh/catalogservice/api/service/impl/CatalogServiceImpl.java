@@ -1,6 +1,7 @@
 package com.dh.catalogservice.api.service.impl;
 
 import com.dh.catalogservice.api.service.CatalogService;
+import com.dh.catalogservice.api.service.MovieWSService;
 import com.dh.catalogservice.domain.model.dto.CatalogWS;
 import com.dh.catalogservice.domain.model.dto.MovieWS;
 import com.dh.catalogservice.domain.model.dto.SerieWS;
@@ -24,6 +25,7 @@ public class CatalogServiceImpl implements CatalogService {
 
 	@Autowired
 	private SerieRepository serieRepository;
+	
 
 
 	@CircuitBreaker(name = "circuitGetCatalogByGenre", fallbackMethod = "fallBackGetCatalogByGenre")

@@ -1,24 +1,36 @@
 package com.dh.catalogservice.queue;
 
 
+import com.dh.catalogservice.api.service.MovieWSService;
+import com.dh.catalogservice.api.service.SerieWSService;
 import com.dh.catalogservice.domain.model.dto.MovieWS;
 import com.dh.catalogservice.domain.model.dto.SerieWS;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
-public class MovieListener {
+public class Listener {
+    @Autowired
+    private MovieWSService movieWSService;
+
+    @Autowired
+    private SerieWSService serieWSService;
 
     @RabbitListener(queues = {"${queue.movie.name}"})
     public void receive(@Payload MovieWS movieWS){
-        System.out.println(movieWS);
+        log.info("Se guarda la pelicula con titulo {}",movieWS.getName());
+        movieWSService.saveMovieWS(movieWS);
     }
 
     @RabbitListener(queues = {"${queue.serie.name}"})
     public void receive(@Payload SerieWS serieWS){
-        System.out.println(serieWS);
+        log.info("Se guardo la serie con titulo {}",serieWS.getName());
+        serieWSService.addSerieWS(serieWS);
     }
 }
