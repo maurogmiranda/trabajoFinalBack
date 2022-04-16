@@ -1,27 +1,11 @@
-version: '2.1'
+version: '4.1'
 services:
-  config-server:
-    build: config-server
-    mem_limit: 512m
+  zipkin:
+    image: openzipkin/zipkin:2
     ports:
-      - "8888:8888"
-  eureka-service:
-    build: service-registry
-    mem_limit: 512m
+      - 9411:9411
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
     ports:
-      - "8761:8761"
-  catalog-service:
-    build: catalog-service-parcial
-    mem_limit: 512m
-    ports:
-      - "8082:8080"
-  movie-service:
-    build: movie-service-parcial
-    mem_limit: 512m
-    ports:
-      - "8092:8080"
-  gateway-service:
-    build: gateway-service
-    mem_limit: 512m
-    ports:
-      - "8080:8080"
+      - 5672:5672
+      - 15672:15672
