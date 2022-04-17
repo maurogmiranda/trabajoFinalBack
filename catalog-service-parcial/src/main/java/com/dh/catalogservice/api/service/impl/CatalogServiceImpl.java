@@ -25,7 +25,7 @@ public class CatalogServiceImpl implements CatalogService {
 
 	@Autowired
 	private SerieRepository serieRepository;
-	
+
 
 
 	@CircuitBreaker(name = "circuitGetCatalogByGenre", fallbackMethod = "fallBackGetCatalogByGenre")
