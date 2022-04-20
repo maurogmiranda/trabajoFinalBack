@@ -4,8 +4,130 @@ services:
     image: openzipkin/zipkin:2
     ports:
       - 9411:9411
+    restart: always
+
+ # mongoCatalog:
+ #   image: mongo
+ #   ports: 
+ #     - 27016:27017
+ #   depends_on:
+ #   - zipkin
+ #   restart: always
+
+ # config-server:
+ #   build: config-server
+ #   ports:
+ #   - 8888:8888
+ #   depends_on:
+ #   - zipkin
+ #   - mongoCatalog
+ #   restart: always
+
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
       - 5672:5672
       - 15672:15672
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - mongoCatalog
+    restart: always
+
+ # service-registry:
+ #   build: service-registry
+ #   ports:
+ #   - 8761:8761
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #   restart: always
+
+ # mongoSeries:
+ #   image: mongo
+ #   ports: 
+ #     - 27018:27017
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #   restart: always
+
+ # serie-service:
+ #   build: series-service-parcial
+ #   ports:
+ #   - 8072:8072
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #       - mongoSeries
+ #   restart: always
+
+ # dbMovies:
+ #   image: rabbitmq:3-management-alpine
+ #   ports: mysql
+ #   - 3307:3306
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #       - mongoSeries
+ #       - serie-service
+ #   restart: always
+
+ # movie-service:
+ #   build: movie-service-parcial
+ #   ports:
+ #   - 8082:8082
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #       - mongoSeries
+ #       - serie-service
+ #       - dbMovies
+ #   restart: always
+
+ # catalog-service:
+ #   build: catalog-service-parcial
+ #   ports:
+ #   - 8092:8092
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #       - mongoSeries
+ #       - serie-service
+ #       - dbMovies
+ #       - movie-service
+ #   restart: always
+
+ #  gateway-service:
+ #   build: catalog-service-parcial
+ #   ports:
+ #   - 8080:8080
+ #   depends_on:
+ #       - config-server
+ #       - zipkin
+ #       - rabbitmq
+ #       - mongoCatalog
+ #       - service-registry
+ #       - mongoSeries
+ #       - serie-service
+ #       - dbMovies
+ #       - movie-service
+ #       - catalog-service
+ #   restart: always

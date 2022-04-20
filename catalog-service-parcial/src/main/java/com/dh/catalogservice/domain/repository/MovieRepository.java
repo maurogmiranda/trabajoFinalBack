@@ -16,5 +16,7 @@ public interface MovieRepository {
     @GetMapping("/movies/{genre}")
     public ResponseEntity<List<MovieWS>> getMovieByGenre(@PathVariable String genre);
 
+    @PostMapping("/movies")
+    public ResponseEntity<MovieWS> saveMovie(@RequestBody MovieWS movieWS);
 
 }

@@ -1,5 +1,5 @@
 FROM openjdk:17-oracle
-ARG JAR_FILE=target/movie-service-1.0.0-SNAPSHOT.jar
+ARG JAR_FILE=target/series-service-parcial-0.0.1-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","app.jar"]
-EXPOSE 8082
+EXPOSE 8072

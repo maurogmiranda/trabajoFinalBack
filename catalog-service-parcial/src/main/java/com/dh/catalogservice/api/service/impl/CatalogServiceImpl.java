@@ -50,5 +50,11 @@ public class CatalogServiceImpl implements CatalogService {
 		return new CatalogWS("",Collections.EMPTY_LIST,Collections.EMPTY_LIST);
 	}
 
+	public MovieWS addMovie(MovieWS movieWS){
+		return movieRepository.saveMovie(movieWS).getBody();
+	}
 
+	public SerieWS addSerie(SerieWS serieWS){
+		return serieRepository.addSerie(serieWS).getBody();
+	}
 }
