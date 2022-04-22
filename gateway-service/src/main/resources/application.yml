@@ -1,16 +1,16 @@
 spring:
-#  security:
-#    oauth2:
-#      client:
-#        provider:
-#          google:
-#            issuer-uri: https://accounts.google.com
-#        registration:
-#          google:
-#            client-id: 359294979077-mmak495dq42u5a70gvp3gsi7gahkjlhk.apps.googleusercontent.com
-#            client-secret:
-#            scope: openid,profile,email
-#            redirect-uri: http://localhost:8080/login/oauth2/code/google
+  security:
+    oauth2:
+      client:
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+        registration:
+          google:
+            client-id: 359294979077-mmak495dq42u5a70gvp3gsi7gahkjlhk.apps.googleusercontent.com
+            client-secret: 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
+            scope: openid,profile,email
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
   application:
     name: gateway-service
   config:
